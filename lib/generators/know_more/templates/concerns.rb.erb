@@ -1,0 +1,15 @@
+module KnowMore
+  # this module is used to define the functions
+  # that will actually run in the KnowMore/QuestionnaireController
+  module QuestionnaireControllerConcerns
+    self.included(base) do
+      # define the behaviour when included
+    end
+
+    # _stepN function will be called by questionnaire#stepN
+  <% KnowMore.config.pages.times do |n| %>
+    def _step<%= n+1 %>
+    end
+  <% end %>
+  end
+end

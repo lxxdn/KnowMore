@@ -5,6 +5,9 @@ module KnowMore
     class << self
       def included(base)
         base.extend ClassMethods
+
+        # set default values
+        base.config.pages = 3
       end
     end
 
