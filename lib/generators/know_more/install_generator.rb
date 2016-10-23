@@ -6,7 +6,13 @@ module KnowMore
     class_option :haml, :desc => 'Generate Haml pages instead of erb', :type => :boolean
     # class_option :slim, :desc => 'Generate Slim pages instead of erb', :type => :boolean
 
+    argument :model_name
+
     desc 'Create views, migration and model for Rails application'
+
+    def before_all
+      @model_name = model_name.underscore
+    end
 
     def copy_views
       KnowMore.config.pages.times do |n|
@@ -16,7 +22,15 @@ module KnowMore
     end
 
     def copy_concerns
-      template 'concerns.rb.erb', 'lib/know_more/questionnaire_controller_concerns.rb'
+      template 'concerns.rb.erb', 'controllers/concerns/know_more/questionnaire_controller_concerns.rb'
+    end
+
+    def generate_model
+      template 'models/model.rb.erb', "app/models/#{@model_name}.rb"
+    end
+
+    def generate_migration
+      template 'models/migration.rb.erb', "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_#{model_name}.rb"
     end
 
     private

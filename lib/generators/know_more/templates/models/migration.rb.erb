@@ -1,0 +1,9 @@
+class Create<%= @model_name.camelize%> <%= %q(<)%>  ActiveRecord::Migration[5.0]
+  def change
+    create_table :<%= @model_name.underscore.pluralize %> do |t|
+      t.integer :progress, default: 0
+
+      t.timestamps
+    end
+  end
+end

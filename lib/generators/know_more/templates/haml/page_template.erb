@@ -1,6 +1,24 @@
 %h1
   Step <%= @n %>
 
-= link_to :previous, questionnaire_step<%= @n - 1 %>_path, method: :post
-= link_to :next, questionnaire_step<%= @n+1 %>_path, method: :post
+= hidden_field_tag :direction, 'next'
 
+<% if @n - 1 > 0 %>
+= link_to :previous, questionnaire_step<%= @n - 1 %>_path, method: :post
+<% end %>
+
+<% if @n + 1 <= KnowMore.config.pages %>
+= link_to :next, questionnaire_step<%= @n+1 %>_path, method: :post
+<% end %>
+
+:javascript
+  var directionInput = document.querySelector('input.direction'),
+    previousLink = document.querySelector('a#previous'),
+    nextLink = document.querySelector('a#next');
+
+  previousLink.addEventListener('click', function(){
+    directionInput.value = 'previous';
+  });
+  nextLink.addEventListener('click', function(){
+    directionInput.value = 'next';
+  });

@@ -12,3 +12,4 @@ gemspec
 
 # To use a debugger
 gem 'byebug', group: [:development, :test]
+gem 'haml', '~> 4.0.5'
