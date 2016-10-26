@@ -4,21 +4,25 @@
 = hidden_field_tag :direction, 'next'
 
 <% if @n - 1 > 0 %>
-= link_to :previous, questionnaire_step<%= @n - 1 %>_path, method: :post
+= link_to :previous, questionnaire_step<%= @n - 1 %>_path, id: 'knowmore-previous', method: :post
 <% end %>
 
 <% if @n + 1 <= KnowMore.config.pages %>
-= link_to :next, questionnaire_step<%= @n+1 %>_path, method: :post
+= link_to :next, questionnaire_step<%= @n+1 %>_path, id: 'knowmore-next', method: :post
 <% end %>
 
 :javascript
-  var directionInput = document.querySelector('input.direction'),
-    previousLink = document.querySelector('a#previous'),
-    nextLink = document.querySelector('a#next');
+  var directionInput = document.querySelector('input#direction'),
+    previousLink = document.querySelector('a#knowmore-previous'),
+    nextLink = document.querySelector('a#knowmore-next');
 
-  previousLink.addEventListener('click', function(){
-    directionInput.value = 'previous';
-  });
-  nextLink.addEventListener('click', function(){
-    directionInput.value = 'next';
-  });
+  if(previousLink != null){
+    previousLink.addEventListener('click', function(){
+      directionInput.value = 'previous';
+    });
+  }
+  if(nextLink != null){
+    nextLink.addEventListener('click', function(){
+      directionInput.value = 'next';
+    });
+  }
