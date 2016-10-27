@@ -22,7 +22,7 @@ module KnowMore
     end
 
     def copy_concerns
-      template 'concerns.rb.erb', 'controllers/concerns/know_more/questionnaire_controller_concerns.rb'
+      template 'concerns.rb.erb', 'app/controllers/concerns/know_more/questionnaire_controller_concerns.rb'
     end
 
     def generate_model

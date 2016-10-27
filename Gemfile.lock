@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     know_more (0.0.1)
+      jquery-rails (~> 4.2)
       rails (~> 5.0.0, >= 5.0.0.1)
 
 GEM
@@ -153,4 +154,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.13.5
+   1.13.6

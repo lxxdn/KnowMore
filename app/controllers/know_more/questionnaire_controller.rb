@@ -19,10 +19,10 @@ module KnowMore
 
         if params[:direction] == 'previous'
           i = step_index - 1
-          redirect_to self.send("questionnaire_step#{i}") if i > 0
+          redirect_to self.send("questionnaire_step#{i}_url") if i > 0
         else # default is go to the next page
           i = step_index + 1
-          redirect_to self.send("questionnaire_step#{i}") if i <= KnowMore.config.pages
+          redirect_to self.send("questionnaire_step#{i}_url") if i <= KnowMore.config.pages
         end
       end
     end
