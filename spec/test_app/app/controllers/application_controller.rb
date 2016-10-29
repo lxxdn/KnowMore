@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   include KnowMore::ControllerHelpers
 
   def current_questionnaire
-    @current_questionnaire ||= Questionnaire.new
+    @current_questionnaire ||= Questionnaire.last()
   end
 end

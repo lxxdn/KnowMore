@@ -4,6 +4,7 @@ module KnowMore
   module QuestionnaireControllerConcerns
     def self.included(base)
       # define the behaviour when included
+      base.before_action :set_questionnaire
     end
 
     # _stepN function will be called by questionnaire#stepN
@@ -14,5 +15,9 @@ module KnowMore
     def _step<%= n+1 %>_update
     end
   <% end %>
+    private
+    def set_questionnaire
+      @questionnaire = current_questionnaire
+    end
   end
 end

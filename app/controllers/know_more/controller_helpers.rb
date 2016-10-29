@@ -7,8 +7,7 @@ module KnowMore
     def require_questionnaire!
       return if current_questionnaire.nil?
       unless current_questionnaire.done?
-        current_questionnaire.progress
-        redirect_to know_more.send("questionnaire_#{current_questionnaire.progress.to_s}_url")
+        redirect_to know_more.send("questionnaire_#{current_questionnaire.progress}_url"), status: :see_other
       end
     end
   end
