@@ -1,17 +1,15 @@
 <h1>
-  Step <%= @n %>
+  Step 3
 </h1>
-<%%= form_for @questionnaire, url: questionnaire_step<%= @n %>_path do |f| %>
-  <%%= hidden_field_tag :direction, 'next' %>
-  <% if @n > 1 %>
-  <%%= link_to :previous, "javascript:void(0)", id: 'knowmore-previous', method: :post %>
-  <% end %>
-  <% if @n < KnowMore.config.pages %>
-  <%%= link_to :next, "javascript:void(0)", id: 'knowmore-next', method: :post %>
-  <% else %>
-  <%%= link_to :done, "javascript:void(0)", id: 'knowmore-next', method: :post %>
-  <% end %>
-<%% end %>
+<%= form_for @questionnaire, url: questionnaire_step3_path do |f| %>
+  <%= hidden_field_tag :direction, 'next' %>
+  
+  <%= link_to :previous, "javascript:void(0)", id: 'knowmore-previous', method: :post %>
+  
+  
+  <%= link_to :done, "javascript:void(0)", id: 'knowmore-next', method: :post %>
+  
+<% end %>
 
 <script>
   var $directionInput = $('input#direction'),

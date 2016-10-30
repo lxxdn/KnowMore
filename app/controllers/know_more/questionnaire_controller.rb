@@ -23,13 +23,20 @@ module KnowMore
           redirect_to self.send("questionnaire_step#{i}_url"), status: :see_other if i > 0
         else # default is go to the next page
           i = step_index + 1
-          redirect_to self.send("questionnaire_step#{i}_url"), status: :see_other if i <= KnowMore.config.pages
+          # for the last step, set questionnaire progress to be done
+          # and go the config.redirect_url
+          if step_index == KnowMore.config.pages
+            current_questionnaire.done!
+            redirect_to KnowMore.config.redirect_url
+          else
+            redirect_to self.send("questionnaire_step#{i}_url"), status: :see_other if i <= KnowMore.config.pages
+          end
         end
       end
     end
 
     def set_current_status(n)
-      current_questionnaire.send("step#{n}!")
+      current_questionnaire.send("step#{n}!") unless current_questionnaire.done?
     end
     def set_next_status
       unless current_questionnaire.done?
