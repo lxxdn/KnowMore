@@ -22,7 +22,7 @@ $ gem install know_more
 ```
 
 ## Usage
-How to use my plugin.
+How to use KnowMore to generate questionnaire scaffold to you?
 
 ```sh
 rails g know_more:init
@@ -33,9 +33,9 @@ This will generate a initializer file, where you can config the questionnaire st
 Configure the the initializer file `config/initializers/know\_more.rb`
 
 Then run the install generator, which will give you templates, controller concerns, model and migration file.
- 
+
 ```sh
-rails g know_more:install MODEL 
+rails g know_more:install MODEL
 ```
 This will generate template with erb engine, you can use `--haml` to generate haml template
 
@@ -45,13 +45,13 @@ It will also create a migration, you can add other attribute to this migration
 
 ### What the generated files used for
 1. `app/controllers/concerns/know_more/questionnaire_controller_concerns.rb`
-    
+
     This file is included by the QuestionnaireController(in the gem), you can add the behaviour
     that you want to do in each step
-    
+
     Here is an example:
     ```rb
-     
+
     module KnowMore
       # this module is used to define the functions
       # that will actually run in the KnowMore/QuestionnaireController
@@ -93,23 +93,23 @@ It will also create a migration, you can add other attribute to this migration
     Cooperating with `require_questionnaire!`, you can force your client to continue with the previous questionnaire.
 
 Then include the module KnowMore::ControllerHelpers into your ApplicationController or BaseController
-and implement your own `current_questionnaire` 
+and implement your own `current_questionnaire`
 
 ```rb
-class ApplicationController < ActionController::Base 
+class ApplicationController < ActionController::Base
   include KnowMore::ControllerHelpers
-  
+
   def current_questionnaire
     # your implementation
   end
 end
 ```
 
-### Notice 
+### Notice
 
-1. The questionnaire returned by current_questionnaire should be created at first.
+1. The questionnaire returned by current\_questionnaire should be created at first.
 Because the process of doing questionnaire is only editing
- 
+
 2. In the `KnowMore::ControllerHelpers`, it provide a helper function `require_questionnaire!`, it could force user to finish questionnaire before going to a controller
  by redirecting the user to the last step of the questionnaire
 ```rb

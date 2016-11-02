@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = KnowMore::VERSION
   s.authors     = ["julien"]
   s.email       = ["julien.luxiao@gmail.com"]
-  # s.homepage    = "http://www.google.com"
+  s.homepage    = "https://github.com/lxxdn/KnowMore"
   s.summary     = "This plugin aims to help you create questionnaires quickly!"
-  # s.description = "TODO: Description of KnowMore."
+  s.description = "A questionnaire scafflod gem"
   s.license     = "MIT"
   s.test_files = Dir["spec/**/*"]
 
